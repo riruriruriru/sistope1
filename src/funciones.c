@@ -9,6 +9,10 @@
 #include "Signal.h"
 #include "Shared.h"
 
+int counterPadre = 0;
+int counterHijo = 0;
+int counterNieto = 0;
+
 //Función que es ejecutado al momento de recibir las señales especificadas, SIGUSR1,SIGUSR2,SIGTERM y SIGINT
 //Entradas: Entero que representa el numero de la señal que fue escuchada por el proceso hijo correspondiente
 //Salidas: Vacio

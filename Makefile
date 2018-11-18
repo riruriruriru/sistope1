@@ -1,10 +1,34 @@
-all: main hijo nieto contador
 
-main: main.c funciones.c
-	gcc -o main main.c funciones.c
-hijo: hijo.c funciones.c
-	gcc -o hijo hijo.c funciones.c
-nieto: nieto.c funciones.c
-	gcc -o nieto nieto.c funciones.c
-contador: contador.c funciones.c
-	gcc -o contador contador.c funciones.c
+all: clean bin/main bin/hijo bin/nieto bin/contador 
+
+bin/main: obj/main.o obj/funciones.o
+	gcc obj/main.o obj/funciones.o -o bin/main
+	
+bin/hijo: obj/hijo.o obj/funciones.o
+	gcc obj/hijo.o obj/funciones.o -o bin/hijo
+	
+bin/nieto: obj/nieto.o obj/funciones.o
+	gcc obj/nieto.o obj/funciones.o -o bin/nieto
+	
+bin/contador: obj/contador.o obj/funciones.o
+	gcc obj/contador.o obj/funciones.o -o bin/contador
+	
+obj/main.o:
+	gcc -c -Iinclude src/main.c -o obj/main.o
+
+obj/hijo.o:
+	gcc -c -Iinclude src/hijo.c -o obj/hijo.o
+
+obj/nieto.o:
+	gcc -c -Iinclude src/nieto.c -o obj/nieto.o
+
+obj/contador.o:
+	gcc -c -Iinclude src/contador.c -o obj/contador.o
+	
+obj/funciones.o:
+	gcc -c -Iinclude src/funciones.c -o obj/funciones.o
+
+.PHONY: clean
+
+clean:
+	rm -f obj/*.o *~ core $(INCDIR)/*~ 
